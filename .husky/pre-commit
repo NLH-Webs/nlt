@@ -1,0 +1,14 @@
+# NLH FE Flow — chặn commit thẳng vào dev/main. Xem CLAUDE.md trong repo.
+branch="$(git symbolic-ref --short HEAD 2>/dev/null || true)"
+if [ "$branch" = "dev" ] || [ "$branch" = "main" ]; then
+  echo ""
+  echo "  ⛔  KHÔNG commit thẳng vào nhánh '$branch'."
+  echo ""
+  echo "      Tạo nhánh mới từ 'dev' rồi làm trên đó:"
+  echo "        • Non-tech : commit/push nhánh của mình + tự deploy preview"
+  echo "        • Tech     : commit/push nhánh của mình rồi mở Pull Request"
+  echo ""
+  echo "      Chi tiết: xem CLAUDE.md trong repo."
+  echo ""
+  exit 1
+fi

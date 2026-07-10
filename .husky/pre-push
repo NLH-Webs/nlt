@@ -1,0 +1,15 @@
+# NLH FE Flow — chặn push thẳng vào dev/main (kể cả push HEAD:dev).
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$remote_ref" in
+    refs/heads/dev|refs/heads/main)
+      target="${remote_ref#refs/heads/}"
+      echo ""
+      echo "  ⛔  KHÔNG push thẳng vào nhánh '$target'."
+      echo "      Code chỉ vào dev/main qua Pull Request (xem CLAUDE.md)."
+      echo ""
+      echo "      Push lên nhánh của bạn (tạo từ 'dev'), không push thẳng dev/main."
+      echo ""
+      exit 1
+      ;;
+  esac
+done
