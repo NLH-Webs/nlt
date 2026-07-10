@@ -29,6 +29,7 @@ import { achievementCategories } from "./data/achievements";
 import Dashboard from "./pages/Dashboard.tsx";
 import SelectRole from "./pages/SelectRole";
 import VerifyCCCD from "./pages/VerifyCCCD";
+import Onboarding from "./pages/onboarding";
 import ActiveMemberActionSelect from "./pages/active-member-action-select";
 import OutTeamSteps from "./pages/out-team-steps";
 
@@ -117,6 +118,7 @@ const App = () => (
           {/* New Dashboard Route */}
           <Route path="/select-role" element={<SelectRole />} />
           <Route path="/verify-cccd" element={<VerifyCCCD />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/active-member-action" element={<ActiveMemberActionSelect />} />
           <Route path="/out-team-steps" element={<OutTeamSteps />} />
