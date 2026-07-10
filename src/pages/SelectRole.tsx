@@ -26,6 +26,8 @@ const SelectRole = () => {
       localStorage.setItem("nlt_userType", role);
       if (role === "active") {
         navigate("/active-member-action");
+      } else if (role === "new") {
+        navigate("/onboarding");
       } else {
         navigate("/dashboard", { state: { userType: role } });
       }
