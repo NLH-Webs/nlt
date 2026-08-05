@@ -96,8 +96,6 @@ export const onboardingTeams: OnboardingTeam[] = [
   },
 ];
 
-export const quizRecommendedTeamIds = ["n-edu", "it"];
-
 /** Team display label with a guaranteed trailing "Team" (avoids doubling it for names like "IT Team"). */
 export function teamFullLabel(team: OnboardingTeam): string {
   return team.name.endsWith("Team") ? team.name : `${team.name} Team`;
@@ -106,6 +104,7 @@ export function teamFullLabel(team: OnboardingTeam): string {
 export interface QuizOption {
   id: string;
   label: string;
+  teamIds?: string[];
 }
 
 export interface QuizQuestion {
@@ -120,30 +119,30 @@ export const discoveryQuizQuestions: QuizQuestion[] = [
     id: "q1",
     question: "Bạn thích làm việc theo cách nào nhất?",
     options: [
-      { id: "a", label: "Lên kế hoạch chi tiết trước khi bắt tay vào làm" },
-      { id: "b", label: "Bắt tay vào làm rồi điều chỉnh dần" },
-      { id: "c", label: "Trao đổi với mọi người để tìm hướng đi chung" },
-      { id: "d", label: "Tự mình thử nghiệm và khám phá" },
+      { id: "a", label: "Lên kế hoạch chi tiết trước khi bắt tay vào làm", teamIds: ["admin", "academy"] },
+      { id: "b", label: "Bắt tay vào làm rồi điều chỉnh dần", teamIds: ["it", "editor"] },
+      { id: "c", label: "Trao đổi với mọi người để tìm hướng đi chung", teamIds: ["hr", "social-event"] },
+      { id: "d", label: "Tự mình thử nghiệm và khám phá", teamIds: ["design", "n-edu"] },
     ],
   },
   {
     id: "q2",
     question: "Điều gì khiến bạn có động lực nhất khi làm việc nhóm?",
     options: [
-      { id: "a", label: "Nhìn thấy kết quả cụ thể, đo lường được" },
-      { id: "b", label: "Được sáng tạo và thử điều mới" },
-      { id: "c", label: "Cảm giác kết nối, gắn bó với đồng đội" },
-      { id: "d", label: "Giúp đỡ và hỗ trợ người khác phát triển" },
+      { id: "a", label: "Nhìn thấy kết quả cụ thể, đo lường được", teamIds: ["it", "admin"] },
+      { id: "b", label: "Được sáng tạo và thử điều mới", teamIds: ["design", "editor"] },
+      { id: "c", label: "Cảm giác kết nối, gắn bó với đồng đội", teamIds: ["hr", "social-event"] },
+      { id: "d", label: "Giúp đỡ và hỗ trợ người khác phát triển", teamIds: ["n-edu", "academy"] },
     ],
   },
   {
     id: "q3",
     question: "Khi gặp một vấn đề khó, bạn thường làm gì đầu tiên?",
     options: [
-      { id: "a", label: "Phân tích dữ liệu, tìm quy luật" },
-      { id: "b", label: "Hỏi ý kiến người có kinh nghiệm" },
-      { id: "c", label: "Thử nhiều cách khác nhau cho đến khi ra kết quả" },
-      { id: "d", label: "Vẽ sơ đồ, hình dung tổng thể vấn đề" },
+      { id: "a", label: "Phân tích dữ liệu, tìm quy luật", teamIds: ["it", "academy"] },
+      { id: "b", label: "Hỏi ý kiến người có kinh nghiệm", teamIds: ["hr", "n-edu"] },
+      { id: "c", label: "Thử nhiều cách khác nhau cho đến khi ra kết quả", teamIds: ["editor", "social-event"] },
+      { id: "d", label: "Vẽ sơ đồ, hình dung tổng thể vấn đề", teamIds: ["design", "admin"] },
     ],
   },
 ];
@@ -247,5 +246,6 @@ export const onboardingSteps = [
   { id: 2, label: "Khám phá team" },
   { id: 3, label: "Quyết định của bạn" },
   { id: 4, label: "Hiểu về văn hóa NhiLe Team" },
-  { id: 5, label: "Đặt lịch phỏng vấn" },
+  { id: 5, label: "Chốt team ứng tuyển" },
+  { id: 6, label: "Đặt lịch phỏng vấn" },
 ] as const;

@@ -10,14 +10,14 @@ interface OnboardingLayoutProps {
 export function OnboardingLayout({ currentStep, onStepClick, children }: OnboardingLayoutProps) {
   const isCultureStep = currentStep === 4;
   return (
-    <div className="h-[100dvh] overflow-hidden flex flex-col font-['Be_Vietnam_Pro',sans-serif]" style={{ backgroundColor: "rgb(22,12,4)" }}>
+    <div className="onboarding-flow h-[100dvh] overflow-hidden flex flex-col font-['Be_Vietnam_Pro',sans-serif]" style={{ backgroundColor: "rgb(250,240,224)" }}>
       <OnboardingStepper currentStep={currentStep} onStepClick={onStepClick} />
 
       <main
         className="relative flex-1 bg-cover bg-center overflow-hidden"
         style={{ backgroundImage: "url(/onboarding/site-background_trang.png)" }}
       >
-        <div className={`relative z-10 mx-auto flex h-full max-w-5xl items-start justify-center px-4 py-2 sm:py-3 sm:px-8 overflow-y-auto ${isCultureStep ? "" : "[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"}`}>
+        <div className={`relative z-10 mx-auto flex h-full max-w-5xl justify-center px-4 py-2 sm:py-3 sm:px-8 overflow-y-auto ${isCultureStep ? "items-stretch" : "items-start [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"}`}>
           {children}
         </div>
       </main>

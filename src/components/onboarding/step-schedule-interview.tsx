@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { interviewDateSlots, interviewTimeSlots } from "./data/onboarding-fake-data";
+import { interviewDateSlots, interviewTimeSlots, onboardingTeams, teamFullLabel } from "./data/onboarding-fake-data";
 
 interface StepScheduleInterviewProps {
+  finalTeamId: string | null;
   onBack: () => void;
 }
 
 const pillStyle = (active: boolean) =>
   active
     ? { background: "linear-gradient(135deg, rgb(212,164,62), rgb(138,96,32))", color: "rgb(255,253,249)", borderColor: "transparent" }
-    : { backgroundColor: "rgba(253,244,224,0.05)", color: "rgb(138,96,32)", borderColor: "rgb(66,40,21)" };
+    : { backgroundColor: "rgb(250,240,224)", color: "rgb(138,96,32)", borderColor: "rgb(224,204,176)" };
 
-export function StepScheduleInterview({ onBack }: StepScheduleInterviewProps) {
+export function StepScheduleInterview({ finalTeamId, onBack }: StepScheduleInterviewProps) {
   const [dateId, setDateId] = useState<string | null>(null);
   const [time, setTime] = useState<string | null>(null);
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const finalTeam = onboardingTeams.find((team) => team.id === finalTeamId);
 
   if (isConfirmed) {
     const selectedDate = interviewDateSlots.find((d) => d.id === dateId);
@@ -23,9 +25,10 @@ export function StepScheduleInterview({ onBack }: StepScheduleInterviewProps) {
         <h2 className="text-2xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: "rgb(61,32,8)" }}>
           Lịch của bạn đã được ghi nhận
         </h2>
-        <p className="text-sm max-w-sm" style={{ color: "rgb(196,168,139)" }}>
-          Buổi phỏng vấn: <span className="font-bold">{selectedDate?.label}</span> lúc{" "}
-          <span className="font-bold">{time}</span>. Chi tiết và link Zoom sẽ được gửi qua email trong vòng 2 giờ.
+        <p className="text-sm max-w-sm" style={{ color: "rgb(120,95,70)" }}>
+          Buổi phỏng vấn{finalTeam ? <> team <span className="font-bold">{teamFullLabel(finalTeam)}</span></> : null}:{" "}
+          <span className="font-bold">{selectedDate?.label}</span> lúc <span className="font-bold">{time}</span>.
+          Chi tiết và link Zoom sẽ được gửi qua email trong vòng 2 giờ.
         </p>
         <p className="text-xs" style={{ color: "rgb(139,115,85)" }}>
           Cần đổi lịch? Liên hệ HR qua Telegram{" "}
@@ -44,8 +47,8 @@ export function StepScheduleInterview({ onBack }: StepScheduleInterviewProps) {
         <h2 className="text-2xl font-bold mt-2" style={{ fontFamily: "'Playfair Display', serif", color: "rgb(61,32,8)" }}>
           Đặt lịch phỏng vấn
         </h2>
-        <p className="text-sm mt-1" style={{ color: "rgb(196,168,139)" }}>
-          Chọn ngày và giờ phù hợp với bạn
+        <p className="text-sm mt-1" style={{ color: "rgb(120,95,70)" }}>
+          {finalTeam ? <>Ứng tuyển team <span className="font-bold">{teamFullLabel(finalTeam)}</span> — chọn ngày và giờ phù hợp với bạn</> : "Chọn ngày và giờ phù hợp với bạn"}
         </p>
       </div>
 
@@ -88,7 +91,7 @@ export function StepScheduleInterview({ onBack }: StepScheduleInterviewProps) {
       </div>
 
       <div className="flex gap-3">
-        <button type="button" onClick={onBack} className="flex-1 rounded-xl border py-3 text-sm font-bold" style={{ borderColor: "rgb(90,64,42)", color: "rgb(196,168,139)" }}>
+        <button type="button" onClick={onBack} className="flex-1 rounded-xl border py-3 text-sm font-bold" style={{ borderColor: "rgb(90,64,42)", color: "rgb(90,58,24)" }}>
           Quay lại
         </button>
         <button
