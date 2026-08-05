@@ -5,28 +5,27 @@ interface OnboardingStepperProps {
   onStepClick: (step: number) => void;
 }
 
-// Step 3 ("Quyết định của bạn") auto-completes once a team is registered — it has no dedicated screen to navigate back to.
-const STEPS_WITHOUT_SCREEN = [3];
-
 export function OnboardingStepper({ currentStep, onStepClick }: OnboardingStepperProps) {
   return (
     <header
       className="sticky top-0 z-20 border-b"
-      style={{ backgroundColor: "rgba(22,12,4,0.92)", borderColor: "rgb(66,40,21)", backdropFilter: "blur(4px)" }}
+      style={{ backgroundColor: "rgba(255,251,242,0.92)", borderColor: "rgb(224,204,176)", backdropFilter: "blur(4px)" }}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-center gap-2 overflow-x-auto px-4 py-1.5 sm:py-2 sm:gap-3 sm:px-6">
+      <div className="mx-auto grid w-full grid-cols-6 overflow-hidden px-3 py-1.5 sm:px-5 sm:py-2">
         {onboardingSteps.map((step, i) => {
           const isDone = step.id < currentStep;
           const isActive = step.id === currentStep;
-          const isClickable = step.id <= currentStep && !STEPS_WITHOUT_SCREEN.includes(step.id);
+          const isClickable = step.id <= currentStep;
 
           return (
-            <div key={step.id} className="flex items-center gap-2 sm:gap-3">
+            <div key={step.id} className="relative flex min-w-0 flex-col items-center">
               <button
                 type="button"
                 disabled={!isClickable}
                 onClick={() => isClickable && onStepClick(step.id)}
-                className="flex items-center gap-2 whitespace-nowrap disabled:cursor-not-allowed"
+                aria-label={`${step.id}. ${step.label}${isActive ? " - bước hiện tại" : ""}`}
+                aria-current={isActive ? "step" : undefined}
+                className="relative z-10 flex min-w-0 flex-col items-center gap-1 disabled:cursor-not-allowed"
               >
                 <span
                   className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors"
@@ -39,14 +38,18 @@ export function OnboardingStepper({ currentStep, onStepClick }: OnboardingSteppe
                   {isDone ? "✓" : step.id}
                 </span>
                 <span
-                  className="hidden text-xs font-semibold sm:inline"
-                  style={{ color: isActive ? "rgb(255,253,249)" : isDone ? "rgb(196,168,139)" : "rgb(90,74,60)" }}
+                  className="hidden w-full truncate text-center text-xs font-semibold sm:block"
+                  style={{ color: isActive ? "rgb(61,32,8)" : isDone ? "rgb(139,115,85)" : "rgb(196,180,160)" }}
                 >
                   {step.label}
                 </span>
               </button>
               {i < onboardingSteps.length - 1 && (
-                <span className="h-px w-4 sm:w-8" style={{ background: "linear-gradient(90deg, rgb(201,151,58), rgb(160,116,40))" }} />
+                <span
+                  aria-hidden="true"
+                  className="absolute left-[calc(50%+14px)] right-[calc(-50%+14px)] top-3.5 z-0 h-px"
+                  style={{ background: "linear-gradient(90deg, rgb(201,151,58), rgb(160,116,40))" }}
+                />
               )}
             </div>
           );

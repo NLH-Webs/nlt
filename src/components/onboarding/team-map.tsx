@@ -1,3 +1,4 @@
+import { Sparkles } from "lucide-react";
 import { onboardingTeams, type OnboardingTeam } from "./data/onboarding-fake-data";
 
 interface TeamMapProps {
@@ -21,7 +22,7 @@ export function TeamMap({ registeredTeamIds, starredTeamIds, onSelectTeam }: Tea
             key={team.id}
             type="button"
             onClick={() => onSelectTeam(team)}
-            className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-1 whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-bold shadow-lg transition-transform hover:scale-105"
+            className="absolute min-h-11 -translate-x-1/2 -translate-y-1/2 flex items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-bold shadow-lg transition-transform hover:scale-105"
             style={{
               top: team.mapPosition.top,
               left: team.mapPosition.left,
@@ -32,7 +33,15 @@ export function TeamMap({ registeredTeamIds, starredTeamIds, onSelectTeam }: Tea
           >
             {team.name}
             {showRegisteredState && " ✓"}
-            {!showRegisteredState && isStarred && " ⭐"}
+            {isStarred && (
+              <span
+                className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px]"
+                style={{ backgroundColor: "rgb(224,242,229)", color: "rgb(40,90,60)" }}
+              >
+                <Sparkles className="h-3 w-3" aria-hidden="true" />
+                Team phù hợp
+              </span>
+            )}
           </button>
         );
       })}

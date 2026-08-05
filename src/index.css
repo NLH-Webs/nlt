@@ -152,6 +152,21 @@ All colors MUST be HSL.
   scroll-margin-bottom: 150rem;
 }
 
+/* Keep onboarding typography aligned with the approved HR reference. */
+.onboarding-flow {
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.onboarding-flow :is(h1, h2, h3) {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+.onboarding-flow .onboarding-letter,
+.onboarding-flow .onboarding-letter :is(h2, p) {
+  font-family: 'Dancing Script', cursive;
+}
+
 /* ── Icon animations ───────────────────────────────────────── */
 @keyframes icon-float {
   0%, 100% { transform: translateY(0px); }

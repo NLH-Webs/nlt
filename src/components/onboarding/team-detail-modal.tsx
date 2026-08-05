@@ -18,9 +18,15 @@ export function TeamDetailModal({ team, onClose, onContinueToCulture, onBrowseOt
   if (isRegistered) {
     return (
       <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/50 p-4">
-        <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-3xl p-8 text-center shadow-2xl" style={creamCard}>
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="team-registered-title"
+          className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-3xl p-8 text-center shadow-2xl"
+          style={creamCard}
+        >
           <span className="text-4xl">🎥</span>
-          <h3 className="mt-4 text-xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: "rgb(61,32,8)" }}>
+          <h3 id="team-registered-title" className="mt-4 text-xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: "rgb(61,32,8)" }}>
             Đăng ký thành công!
           </h3>
           <p className="mt-3 text-sm leading-relaxed" style={{ color: "rgb(120,95,70)" }}>
@@ -53,7 +59,13 @@ export function TeamDetailModal({ team, onClose, onContinueToCulture, onBrowseOt
 
   return (
     <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/50 p-4">
-      <div className="grid w-full max-w-3xl grid-cols-1 md:grid-cols-2 overflow-hidden rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto" style={creamCard}>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="team-detail-title"
+        className="grid w-full max-w-3xl grid-cols-1 md:grid-cols-2 overflow-hidden rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto"
+        style={creamCard}
+      >
         <div
           className="flex h-40 items-center justify-center md:h-auto"
           style={{ background: "linear-gradient(135deg, rgb(250,235,215), rgb(240,218,190))" }}
@@ -71,7 +83,7 @@ export function TeamDetailModal({ team, onClose, onContinueToCulture, onBrowseOt
                 {team.icon}
               </span>
               <div>
-                <h3 className="text-base font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif", color: "rgb(61,32,8)" }}>
+                <h3 id="team-detail-title" className="text-base font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif", color: "rgb(61,32,8)" }}>
                   {teamFullLabel(team)}
                 </h3>
                 <p className="text-[11px]" style={{ color: "rgb(150,125,95)" }}>
@@ -79,7 +91,7 @@ export function TeamDetailModal({ team, onClose, onContinueToCulture, onBrowseOt
                 </p>
               </div>
             </div>
-            <button type="button" onClick={onClose} className="shrink-0 text-lg leading-none" style={{ color: "rgb(150,125,95)" }}>
+            <button type="button" aria-label="Đóng thông tin team" onClick={onClose} className="shrink-0 text-lg leading-none" style={{ color: "rgb(150,125,95)" }}>
               ✕
             </button>
           </div>

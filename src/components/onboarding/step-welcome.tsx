@@ -7,6 +7,11 @@ interface StepWelcomeProps {
 
 const goldButton = "inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 active:scale-95";
 const goldButtonStyle = { background: "linear-gradient(135deg, rgb(212,164,62), rgb(138,96,32))" };
+const envelopeStyle = {
+  backgroundImage: "url(/onboarding/red-letter.png)",
+  backgroundPosition: "center 46.5%",
+  backgroundSize: "169.74% 359.09%",
+};
 
 export function StepWelcome({ onNext }: StepWelcomeProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,32 +23,32 @@ export function StepWelcome({ onNext }: StepWelcomeProps) {
 
   if (!isOpen) {
     return (
-      <div className="flex flex-col items-center text-center gap-6">
+      <div className="flex min-h-full w-full flex-col items-center justify-center gap-4 py-3 text-center sm:gap-5 sm:py-6">
         <p className="text-xs font-bold tracking-[0.2em]" style={{ color: "rgb(196,168,139)" }}>
           NHILE TEAM
         </p>
-        <h1 className="text-3xl sm:text-4xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: "rgb(61,32,8)" }}>
+        <h1 className="max-w-3xl text-3xl font-extrabold leading-tight sm:text-4xl" style={{ color: "rgb(61,32,8)" }}>
           Chào mừng bạn đến với{" "}
-          <span style={{ fontFamily: "'Dancing Script', cursive", color: "rgb(180,130,30)" }}>NhiLe Team.</span>
+          <span className="italic" style={{ color: "rgb(180,130,30)" }}>NhiLe Team.</span>
         </h1>
         <div>
           <p className="text-sm" style={{ color: "rgb(196,168,139)" }}>
             Có một bức thư dành riêng cho bạn ✉️
           </p>
-          <p className="text-xs mt-1" style={{ color: "rgb(139,115,85)" }}>
-            Nhấn vào để mở ra nhé.
+          <p className="mt-1 text-xs" style={{ color: "rgb(139,115,85)" }}>
+            Nhấn vào phong thư để mở ra nhé.
           </p>
         </div>
 
-        <button type="button" onClick={() => openLetter()} className="group">
-          <img
-            src="/onboarding/red-letter.png"
-            alt="Phong thư NhiLe Team"
-            className="w-44 sm:w-52 drop-shadow-2xl transition-transform duration-300 group-hover:scale-105"
-          />
-        </button>
+        <button
+          type="button"
+          onClick={openLetter}
+          aria-label="Mở thư chào mừng từ NhiLe Team"
+          className="group aspect-[499/352] w-[min(86vw,34rem)] rounded-sm bg-no-repeat drop-shadow-2xl transition-transform duration-300 hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(138,96,32)]"
+          style={envelopeStyle}
+        />
 
-        <button type="button" onClick={() => openLetter()} className={goldButton} style={goldButtonStyle}>
+        <button type="button" onClick={openLetter} className={goldButton} style={goldButtonStyle}>
           Mở thư →
         </button>
       </div>
@@ -51,9 +56,9 @@ export function StepWelcome({ onNext }: StepWelcomeProps) {
   }
 
   return (
-    <div className="w-full max-w-4xl flex flex-col items-center gap-3 sm:gap-4 animate-in fade-in zoom-in duration-300 my-auto">
+    <div className="w-full max-w-5xl flex flex-col items-center gap-3 sm:gap-4 animate-in fade-in zoom-in duration-300 my-auto">
       <div
-        className="w-full rounded-lg pl-[55px] pr-[65px] pt-[45px] pb-[65px] sm:pl-[210px] sm:pr-[240px] sm:pt-[85px] sm:pb-[120px]"
+        className="w-full rounded-lg pl-[48px] pr-[56px] pt-[40px] pb-[55px] sm:pl-[180px] sm:pr-[205px] sm:pt-[76px] sm:pb-[104px]"
         style={{ backgroundImage: "url(/onboarding/N-letter-background.png)", backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }}
       >
         <h2 className="text-base sm:text-lg mb-3 sm:mb-4 text-center" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 700, color: "rgb(61,32,8)" }}>
@@ -61,8 +66,8 @@ export function StepWelcome({ onNext }: StepWelcomeProps) {
         </h2>
 
         <div
-          className="space-y-2 sm:space-y-3 text-left text-xs sm:text-[13px] leading-normal sm:leading-relaxed"
-          style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 700, color: "rgb(90,58,24)" }}
+          className="onboarding-letter space-y-2 text-left text-xs leading-relaxed sm:text-sm"
+          style={{ color: "rgb(90,58,24)", fontWeight: 500 }}
         >
           <p>Cảm ơn bạn đã dành thời gian ghé thăm và tìm hiểu về NhiLe Team.</p>
           <p>
