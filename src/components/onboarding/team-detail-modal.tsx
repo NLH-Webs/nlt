@@ -7,13 +7,25 @@ interface TeamDetailModalProps {
   onContinueToCulture: () => void;
   onBrowseOtherTeams: () => void;
   onRegisteredSlot: (teamId: string) => void;
+  onUnregisteredSlot: (teamId: string) => void;
+  registeredTeamIds: string[];
 }
 
 const creamCard = { backgroundColor: "rgb(255,251,242)" };
 
-export function TeamDetailModal({ team, onClose, onContinueToCulture, onBrowseOtherTeams, onRegisteredSlot }: TeamDetailModalProps) {
+export function TeamDetailModal({
+  team,
+  onClose,
+  onContinueToCulture,
+  onBrowseOtherTeams,
+  onRegisteredSlot,
+  onUnregisteredSlot,
+  registeredTeamIds,
+}: TeamDetailModalProps) {
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(() => registeredTeamIds.includes(team.id));
+
+  const isLimitReached = registeredTeamIds.length >= 3 && !registeredTeamIds.includes(team.id);
 
   if (isRegistered) {
     return (
@@ -51,6 +63,18 @@ export function TeamDetailModal({ team, onClose, onContinueToCulture, onBrowseOt
             style={{ borderColor: "rgb(210,190,160)", color: "rgb(90,58,24)" }}
           >
             Đăng ký thêm team khác
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              onUnregisteredSlot(team.id);
+              setIsRegistered(false);
+              setSelectedSlot(null);
+            }}
+            className="mt-3 w-full rounded-xl border py-3 text-sm font-bold text-red-600 transition-colors hover:bg-red-50/50"
+            style={{ borderColor: "rgb(254,202,202)" }}
+          >
+            Hủy đăng ký tham quan team này
           </button>
         </div>
       </div>
@@ -114,8 +138,9 @@ export function TeamDetailModal({ team, onClose, onContinueToCulture, onBrowseOt
                 <button
                   key={slot}
                   type="button"
+                  disabled={isLimitReached}
                   onClick={() => setSelectedSlot(slot)}
-                  className="rounded-lg border px-3 py-1.5 text-left text-xs font-semibold transition-colors"
+                  className="rounded-lg border px-3 py-1.5 text-left text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50"
                   style={
                     selectedSlot === slot
                       ? { borderColor: "rgb(212,164,62)", backgroundColor: "rgba(212,164,62,0.15)", color: "rgb(61,32,8)" }
@@ -135,9 +160,18 @@ export function TeamDetailModal({ team, onClose, onContinueToCulture, onBrowseOt
             📩 Link Zoom sẽ được gửi qua email của bạn sau khi đăng ký.
           </div>
 
+          {isLimitReached && (
+            <div
+              className="mt-3 rounded-lg px-3 py-1.5 text-[11px] font-semibold border text-center"
+              style={{ backgroundColor: "rgba(220,38,38,0.06)", borderColor: "rgb(248,113,113)", color: "rgb(185,28,28)" }}
+            >
+              ⚠️ Bạn chỉ được tham quan tối đa 3 team.
+            </div>
+          )}
+
           <button
             type="button"
-            disabled={!selectedSlot}
+            disabled={!selectedSlot || isLimitReached}
             onClick={() => {
               setIsRegistered(true);
               onRegisteredSlot(team.id);
@@ -145,7 +179,11 @@ export function TeamDetailModal({ team, onClose, onContinueToCulture, onBrowseOt
             className="mt-3 w-full rounded-xl py-2.5 text-xs font-bold text-white shadow-lg transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
             style={{ background: "linear-gradient(135deg, rgb(212,164,62), rgb(138,96,32))" }}
           >
-            {selectedSlot ? `Đăng ký buổi ${selectedSlot}` : "Chọn một buổi để đăng ký"}
+            {isLimitReached
+              ? "Đã đạt giới hạn đăng ký tối đa 3 team"
+              : selectedSlot
+              ? `Đăng ký buổi ${selectedSlot}`
+              : "Chọn một buổi để đăng ký"}
           </button>
 
           <button type="button" onClick={onBrowseOtherTeams} className="mt-2 text-[11px] font-semibold underline" style={{ color: "rgb(150,125,95)" }}>

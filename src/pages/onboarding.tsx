@@ -85,6 +85,7 @@ const Onboarding = () => {
           recommendedTeamIds={recommendedTeamIds}
           startOnMap={hasSeenTeamDecision}
           onRegisteredSlot={(teamId) => setRegisteredTeamIds((prev) => (prev.includes(teamId) ? prev : [...prev, teamId]))}
+          onUnregisteredSlot={(teamId) => setRegisteredTeamIds((prev) => prev.filter((id) => id !== teamId))}
         />
       )}
 
@@ -131,11 +132,20 @@ const Onboarding = () => {
       {currentStep === 6 && interviewConfirmed && !wantsInterview && (
         <div className="flex flex-col items-center text-center gap-3">
           <Leaf className="h-12 w-12" style={{ color: "rgb(61,122,79)" }} aria-hidden="true" />
-          <h2 className="text-2xl font-extrabold" style={{ color: "rgb(61,32,8)" }}>
-            Cảm ơn bạn đã dành thời gian tìm hiểu
+          <h2 className="text-2xl font-extrabold max-w-xl" style={{ color: "rgb(61,32,8)" }}>
+            Cảm ơn bạn đã dành thời gian tìm hiểu về NhiLe Team.
           </h2>
-          <p className="text-sm max-w-sm leading-relaxed" style={{ color: "rgb(120,95,70)" }}>
-            Không sao cả, hãy cứ suy nghĩ thêm. Dữ liệu video demo đã được xóa và bạn có thể bắt đầu lại khi sẵn sàng.
+          <p className="text-sm max-w-md leading-relaxed" style={{ color: "rgb(120,95,70)" }}>
+            Mình tôn trọng quyết định của bạn, NhiLe Team luôn ở đây. Mọi thông tin chi tiết vui lòng tìm hiểu tại{" "}
+            <a
+              href="https://nlt.nhi.sg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold underline transition-colors hover:text-amber-800"
+            >
+              nlt.nhi.sg
+            </a>
+            .
           </p>
         </div>
       )}
