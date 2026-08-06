@@ -18,13 +18,23 @@ interface StepTeamDiscoveryProps {
   recommendedTeamIds: string[];
   startOnMap: boolean;
   onRegisteredSlot: (teamId: string) => void;
+  onUnregisteredSlot: (teamId: string) => void;
 }
 
 const goldButton = "inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 active:scale-95";
 const goldButtonStyle = { background: "linear-gradient(135deg, rgb(212,164,62), rgb(138,96,32))" };
 const headingStyle = { fontFamily: "'Playfair Display', serif", color: "rgb(61,32,8)" };
 
-export function StepTeamDiscovery({ onBack, onShowDecision, onContinueToCulture, registeredTeamIds, recommendedTeamIds, startOnMap, onRegisteredSlot }: StepTeamDiscoveryProps) {
+export function StepTeamDiscovery({
+  onBack,
+  onShowDecision,
+  onContinueToCulture,
+  registeredTeamIds,
+  recommendedTeamIds,
+  startOnMap,
+  onRegisteredSlot,
+  onUnregisteredSlot,
+}: StepTeamDiscoveryProps) {
   // If a team was already registered on a previous visit, jump straight back to the map instead of restarting the quiz.
   const [phase, setPhase] = useState<"intro" | "quiz" | "map">(startOnMap || registeredTeamIds.length > 0 ? "map" : "intro");
   const [selectedTeam, setSelectedTeam] = useState<OnboardingTeam | null>(null);
@@ -155,6 +165,8 @@ export function StepTeamDiscovery({ onBack, onShowDecision, onContinueToCulture,
           onClose={() => setSelectedTeam(null)}
           onBrowseOtherTeams={() => setSelectedTeam(null)}
           onRegisteredSlot={onRegisteredSlot}
+          onUnregisteredSlot={onUnregisteredSlot}
+          registeredTeamIds={registeredTeamIds}
           onContinueToCulture={() => {
             setSelectedTeam(null);
             onContinueToCulture();
