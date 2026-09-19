@@ -1,5 +1,15 @@
 import type { Config } from "tailwindcss";
 
+// A Tailwind colour that reads an NLH token and still supports opacity modifiers (bg-black/50).
+const tok = (name: string) => `color-mix(in srgb, var(${name}) calc(<alpha-value> * 100%), transparent)`;
+const neutral = {
+	50: tok('--bg-sunken'), 100: tok('--bg-sunken'),
+	200: tok('--line-hairline'), 300: tok('--line-strong'),
+	400: tok('--text-disabled'), 500: tok('--text-tertiary'),
+	600: tok('--text-secondary'), 700: tok('--text-secondary'),
+	800: tok('--text-primary'), 900: tok('--text-primary')
+};
+
 export default {
 	darkMode: ["class"],
 	content: [
@@ -19,54 +29,45 @@ export default {
 		},
 		extend: {
 			colors: {
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
-				},
-				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
-				},
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
-				},
-				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
-				},
-				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
-				},
-				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
-				},
+				// Every colour resolves to an NLH token (src/styles/nlh/nlh-tokens.css).
+				border: tok('--line-hairline'),
+				input: tok('--line-strong'),
+				ring: tok('--action'),
+				background: tok('--bg-base'),
+				foreground: tok('--text-primary'),
+				primary: { DEFAULT: tok('--action'), foreground: tok('--action-on') },
+				secondary: { DEFAULT: tok('--bg-sunken'), foreground: tok('--text-primary') },
+				destructive: { DEFAULT: tok('--state-error'), foreground: tok('--text-inverse') },
+				muted: { DEFAULT: tok('--bg-sunken'), foreground: tok('--text-secondary') },
+				accent: { DEFAULT: tok('--bg-sunken'), foreground: tok('--text-primary') },
+				popover: { DEFAULT: tok('--bg-raised'), foreground: tok('--text-primary') },
+				card: { DEFAULT: tok('--bg-raised'), foreground: tok('--text-primary') },
 				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+					DEFAULT: tok('--bg-sunken'),
+					foreground: tok('--text-secondary'),
+					primary: tok('--action'),
+					'primary-foreground': tok('--action-on'),
+					accent: tok('--bg-sunken'),
+					'accent-foreground': tok('--text-primary'),
+					border: tok('--line-hairline'),
+					ring: tok('--action')
+				},
+				// Tailwind's default palette names used across the components, remapped onto token roles.
+				white: tok('--nlh-white'),
+				black: tok('--nlh-void'),
+				slate: neutral,
+				gray: neutral,
+				blue: {
+					500: tok('--action'), 600: tok('--action'),
+					700: tok('--action-ink'), 800: tok('--action-ink')
+				},
+				red: { 50: tok('--bg-sunken'), 300: tok('--state-error'), 400: tok('--state-error') },
+				green: { 100: tok('--bg-sunken'), 200: tok('--line-strong'), 800: tok('--state-ok') }
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: 'var(--r-md)',
+				md: 'var(--r-sm)',
+				sm: 'var(--r-xs)'
 			},
 			keyframes: {
 				'accordion-down': {
@@ -91,22 +92,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			},
 			fontFamily: {
-				sans: [
-					'"Be Vietnam Pro"',
-					'ui-sans-serif',
-					'system-ui',
-					'-apple-system',
-					'"Segoe UI"',
-					'Roboto',
-					'Inter',
-					'"Helvetica Neue"',
-					'Arial',
-					'"Noto Sans"',
-					'sans-serif',
-					'"Apple Color Emoji"',
-					'"Segoe UI Emoji"',
-					'"Segoe UI Symbol"'
-				]
+				sans: ['var(--font-ui)'],
+				display: ['var(--font-display)']
 			}
 		}
 	},

@@ -22,6 +22,11 @@ export const HeroSection = () => {
         >
           Khám phá câu chuyện
         </button>
+        <p className="mt-6 text-sm text-slate-600">
+          <a href="https://www.facebook.com/NhiLeTeam/reviews" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-slate-900">
+            ★ 100% giới thiệu · 1.449 đánh giá trên Facebook
+          </a>
+        </p>
       </div>
     </section>
   );

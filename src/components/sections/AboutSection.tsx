@@ -52,7 +52,7 @@ export const AboutSection = () => {
               người cùng chí hướng tham gia.
             </p>
             <p className="text-slate-600 leading-relaxed">
-              Từ 3 người tiên phong, cộng đồng đã mở rộng lên hơn 300 thành viên cốt cán và hơn 5000 thành viên 
+              Từ 3 người tiên phong, cộng đồng đã lớn lên thành một đội ngũ cốt cán khoảng 60 người và hơn 5000 thành viên 
               tích cực, trở thành tiền thân cho NhiLe Foundation ngày nay.
             </p>
           </div>
