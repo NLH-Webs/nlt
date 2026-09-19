@@ -59,3 +59,5 @@
 #register-form {
   scroll-margin-bottom: 150rem;
 }
+/* Shared lead form section (nlh-contact). */
+.nlh-lead { padding: var(--s-8) var(--gutter); background: var(--bg-sunken); }

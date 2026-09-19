@@ -24,6 +24,9 @@ export const HomePage = () => {
       <MemberJourneySection />
       <RegistrationFormSection />
       <ExploreCommunitiesSection onNavigate={handleNavigate} />
+      <section className="nlh-lead" id="lien-he">
+        <nlh-contact site="nlt" lang="vi" topics="Tham gia NhiLe Team / tình nguyện|Hợp tác dự án|Tài trợ – đồng hành|Truyền thông – báo chí" />
+      </section>
     </div>
   );
 };
