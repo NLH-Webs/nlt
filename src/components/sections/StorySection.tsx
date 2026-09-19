@@ -79,7 +79,7 @@ export const StorySection = () => {
               Hướng Đi: Xây Dựng Di Sản Lâu Dài
             </h3>
             <p>
-              Chúng tôi thành lập <strong>NhiLe Holding</strong> - những doanh nghiệp chia sẻ cùng nhau một giá trị cốt lõi Tâm-Tầm-Đức, với mục tiêu không chỉ tạo ra lợi nhuận cho hiện tại mà còn đảm bảo di sản NhiLe Team tồn tại và phát triển hơn nữa trong tương lai. Lợi nhuận từ NhiLe Holding sẽ hỗ trợ <strong>Nhi Le Foundation</strong>, giúp đỡ những trẻ em mồ côi, bị cha mẹ bỏ rơi hoặc có hoàn cảnh bất hạnh tiếp tục được học tập và phát triển kỹ năng, bất kể tình hình cá nhân của người sáng lập.
+              Chúng tôi thành lập <strong>NhiLe Holding</strong> - những doanh nghiệp chia sẻ cùng nhau một giá trị cốt lõi Tâm-Tầm-Đức, với mục tiêu không chỉ tạo ra lợi nhuận cho hiện tại mà còn đảm bảo di sản NhiLe Team tồn tại và phát triển hơn nữa trong tương lai. Lợi nhuận từ NhiLe Holding sẽ hỗ trợ <strong>NhiLe Foundation</strong>, giúp đỡ những trẻ em mồ côi, bị cha mẹ bỏ rơi hoặc có hoàn cảnh bất hạnh tiếp tục được học tập và phát triển kỹ năng, bất kể tình hình cá nhân của người sáng lập.
             </p>
           </div>
           <div className="pt-6">
