@@ -34,10 +34,6 @@ import onlineMeeting_10 from '../asset/Online Meeting/10.jpg';
 import onlineMeeting_11 from '../asset/Online Meeting/11.jpg';
 import onlineMeeting_12 from '../asset/Online Meeting/12.jpg';
 
-import bootcamp_1 from '../asset/Bootcamp/1.png';
-import bootcamp_2 from '../asset/Bootcamp/2.png';
-import bootcamp_3 from '../asset/Bootcamp/3.png';
-import bootcamp_4 from '../asset/Bootcamp/4.png';
 import leadership_1 from '../asset/Leadership bootcamp/1.jpg';
 import leadership_2 from '../asset/Leadership bootcamp/2.jpg';
 import leadership_3 from '../asset/Leadership bootcamp/3.jpg';
@@ -138,15 +134,9 @@ export const achievementCategories = [
     categoryDescription: "Đây là phần tổng hợp các hoạt động xây dựng đội ngũ. Nó cho thấy NhiLe Team không chỉ tập trung vào công việc mà còn chú trọng tạo ra một môi trường làm việc tích cực...",
     slug: "team-building",
     projects: [
-      {
-        projectTitle: "Album: Bootcamp",
-        projectDescription: "Các buổi rèn luyện kỹ năng và tinh thần đồng đội tại các buổi bootcamp sôi động và đầy thử thách.",
-        slug: "bootcamp",
-        album: [
-          { src: bootcamp_1, alt: "Bootcamp" }, { src: bootcamp_2, alt: "Bootcamp" },
-          { src: bootcamp_3, alt: "Bootcamp" }, { src: bootcamp_4, alt: "Bootcamp" },
-        ],
-      },
+      // Album "Bootcamp" tạm gỡ: 4 file gốc là DNG/HEIC (trình duyệt không đọc được)
+      // và 1.png nặng 33MB vượt giới hạn 25MB của Cloudflare Pages.
+      // Team xuất lại JPG (xem BRIEF-HINH-ANH.md) rồi thêm lại album.
       {
         projectTitle: "Album: Leadership bootcamp",
         projectDescription: "Tổng hợp hình ảnh từ trại huấn luyện lãnh đạo, nơi các thành viên được mài giũa tư duy và kỹ năng để trở thành những người dẫn dắt trong tương lai.",
