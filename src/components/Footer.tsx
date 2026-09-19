@@ -91,8 +91,19 @@ export const Footer = ({ onNavigate }: FooterProps) => {
         </div>
         
         <div className="mt-8 border-t border-slate-800 pt-8">
+          <div className="container mx-auto px-6 mb-6 text-sm text-slate-400 flex flex-col md:flex-row md:flex-wrap gap-x-6 gap-y-2 items-center justify-center md:justify-start">
+            <span className="text-slate-300">Hệ sinh thái NhiLe:</span>
+            <a href="https://nlh.nhi.sg/" className="hover:text-white transition-colors">NhiLe Holding</a>
+            <a href="https://nedu.vn/" className="hover:text-white transition-colors">N-Education</a>
+            <a href="https://nlf.sg/" className="hover:text-white transition-colors">NhiLe Foundation</a>
+            <a href="https://nhi.sg/" className="hover:text-white transition-colors">Nhi Le</a>
+          </div>
+          <div className="container mx-auto px-6 mb-6 text-xs text-slate-400 text-center md:text-left">
+            <p>NhiLe Team (từ 2021) là cộng đồng thuộc hệ sinh thái NhiLe Holding.</p>
+            <p>CÔNG TY CỔ PHẦN NHILE HOLDING · MST 0402230476 · Đà Nẵng, Việt Nam · Thành lập 2024</p>
+          </div>
           <div className="container mx-auto px-6 text-sm flex flex-col md:flex-row justify-between items-center">
-            <p className="text-slate-400">&copy; 2025 NhiLe Team. All rights reserved.</p>
+            <p className="text-slate-400">&copy; {new Date().getFullYear()} NhiLe Team. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/privacy-statement" className="hover:text-white transition-colors">Privacy Statement</a>
               <a href="/terms-of-use" className="hover:text-white transition-colors">Terms of Use</a>
