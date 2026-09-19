@@ -46,7 +46,7 @@ export const StorySection = () => {
               Người Sáng Lập - Nhi Le: Hành Trình Của Đam Mê Và Tầm Nhìn
             </h3>
             <p>
-              Từ những ngày đầu tiên, Nhi Le đã quyết tâm chia sẻ kiến thức và kỹ năng tới với giới trẻ Việt Nam, đặc biệt là những em nhỏ có hoàn cảnh khó khăn. Với tâm huyết không ngừng, Nhi Le đã kêu gọi những người cùng chí hướng tham gia, từ 3 người tiên phong ban đầu, dần dần mở rộng lên 10, 15 và hiện nay là hơn 300 thành viên, cùng với hơn 5000 thành viên tích cực trong cộng đồng lớn mạnh.
+              Từ những ngày đầu tiên, Nhi Le đã quyết tâm chia sẻ kiến thức và kỹ năng tới với giới trẻ Việt Nam, đặc biệt là những em nhỏ có hoàn cảnh khó khăn. Với tâm huyết không ngừng, Nhi Le đã kêu gọi những người cùng chí hướng tham gia, từ 3 người tiên phong ban đầu, dần dần mở rộng lên 10, 15, rồi có lúc hơn 300 thành viên. Hiện nay đội ngũ cốt cán gọn lại còn khoảng 60 người làm việc cùng AI, cùng với hơn 5000 thành viên tích cực trong cộng đồng lớn mạnh.
             </p>
           </div>
           <div className="pt-6">
