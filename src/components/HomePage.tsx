@@ -25,7 +25,7 @@ export const HomePage = () => {
       <RegistrationFormSection />
       <ExploreCommunitiesSection onNavigate={handleNavigate} />
       <section className="nlh-lead" id="lien-he">
-        <nlh-contact site="nlt" lang="vi" topics="Tham gia NhiLe Team / tình nguyện|Hợp tác dự án|Tài trợ – đồng hành|Truyền thông – báo chí" />
+        <nlh-contact site="nlt" topics-vi="Tham gia NhiLe Team / tình nguyện|Hợp tác dự án|Tài trợ – đồng hành|Truyền thông – báo chí" topics-en="Join NhiLe Team / volunteer|Project partnership|Sponsorship|Media and press" />
       </section>
     </div>
   );
