@@ -100,7 +100,7 @@ export const Footer = ({ onNavigate }: FooterProps) => {
           </div>
           <div className="container mx-auto px-6 mb-6 text-xs text-slate-400 text-center md:text-left">
             <p>NhiLe Team (từ 2021) là cộng đồng thuộc hệ sinh thái NhiLe Holding.</p>
-            <p>CÔNG TY CỔ PHẦN NHILE HOLDING · MST 0402230476 · Đà Nẵng, Việt Nam · Thành lập 2024</p>
+            <p>CÔNG TY CỔ PHẦN NHILE HOLDING · MST 0402230476 · Lô 3, khu B2-7, KĐT Halla Jade Residence, P. Hải Châu, TP Đà Nẵng · Thành lập 2024</p>
           </div>
           <div className="container mx-auto px-6 text-sm flex flex-col md:flex-row justify-between items-center">
             <p className="text-slate-400">&copy; {new Date().getFullYear()} NhiLe Team. All rights reserved.</p>
