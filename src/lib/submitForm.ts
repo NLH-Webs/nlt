@@ -88,6 +88,11 @@ const sendToWebhook = async (formData: FormData, rowNumber?: number | null) => {
 };
 
 export const submitForm = async (formData: FormData) => {
+  if (!SCRIPT_URL) {
+    console.error('❌ VITE_APPS_SCRIPT_URL chưa được cấu hình khi build, không thể gửi form');
+    return { success: false, error: 'Missing VITE_APPS_SCRIPT_URL' };
+  }
+
   try {
     // Chuyển đổi formData thành một đối tượng có thể sử dụng với URLSearchParams
     const formDataEntries = Object.entries(formData).map(([key, value]) => [key, String(value)]);
@@ -99,6 +104,11 @@ export const submitForm = async (formData: FormData) => {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
+
+    if (!response.ok) {
+      console.error(`❌ App Script response status: ${response.status}`);
+      return { success: false, error: `App Script response status: ${response.status}` };
+    }
 
     const data = await response.json();
 
