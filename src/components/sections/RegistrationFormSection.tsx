@@ -70,11 +70,14 @@ export const RegistrationFormSection = () => {
     }));
   };
 
+  const [selectErrors, setSelectErrors] = useState<{ source?: boolean; time_commitment?: boolean }>({});
+
   const handleSelectChange = (name: keyof FormData) => (value: string) => {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+    setSelectErrors((prev) => ({ ...prev, [name]: false }));
   };
 
   const handleCheckboxChange = (name: keyof FormData) => (checked: boolean) => {
@@ -86,6 +89,18 @@ export const RegistrationFormSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Radix Select không chặn submit như select gốc, nên tự kiểm tra hai ô bắt buộc
+    const errors = {
+      source: !formData.source,
+      time_commitment: !formData.time_commitment,
+    };
+    setSelectErrors(errors);
+    if (errors.source || errors.time_commitment) {
+      document.getElementById(errors.source ? "source" : "time_commitment")?.focus();
+      return;
+    }
+
     setLoading(true);
 
     const result = await submitForm(formData);
@@ -201,7 +216,12 @@ export const RegistrationFormSection = () => {
                   value={formData.source}
                   onValueChange={handleSelectChange('source')}
                 >
-                  <SelectTrigger className="w-full px-4 py-3 bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition" id="source">
+                  <SelectTrigger
+                    className={`w-full px-4 py-3 bg-slate-100 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition ${selectErrors.source ? "border-red-500" : "border-slate-200"}`}
+                    id="source"
+                    aria-invalid={selectErrors.source || undefined}
+                    aria-describedby={selectErrors.source ? "source-error" : undefined}
+                  >
                     <SelectValue placeholder="Vui lòng chọn" />
                   </SelectTrigger>
                   <SelectContent>
@@ -211,6 +231,9 @@ export const RegistrationFormSection = () => {
                     <SelectItem value="other">Nguồn khác</SelectItem>
                   </SelectContent>
                 </Select>
+                {selectErrors.source && (
+                  <p id="source-error" className="mt-2 text-sm text-red-600">Vui lòng chọn nơi bạn biết đến NhiLe Team.</p>
+                )}
               </div>
               <h3 className="text-lg font-semibold text-slate-800 mb-4 mt-8 border-b pb-2">Cam Kết</h3>
               <div className="mb-6">
@@ -220,13 +243,21 @@ export const RegistrationFormSection = () => {
                   value={formData.time_commitment}
                   onValueChange={handleSelectChange('time_commitment')}
                 >
-                  <SelectTrigger className="w-full px-4 py-3 bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition" id="time_commitment">
+                  <SelectTrigger
+                    className={`w-full px-4 py-3 bg-slate-100 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition ${selectErrors.time_commitment ? "border-red-500" : "border-slate-200"}`}
+                    id="time_commitment"
+                    aria-invalid={selectErrors.time_commitment || undefined}
+                    aria-describedby={selectErrors.time_commitment ? "time_commitment-error" : undefined}
+                  >
                     <SelectValue placeholder="Vui lòng chọn" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="3">3 giờ / ngày</SelectItem>
                   </SelectContent>
                 </Select>
+                {selectErrors.time_commitment && (
+                  <p id="time_commitment-error" className="mt-2 text-sm text-red-600">Vui lòng chọn thời gian bạn có thể cam kết.</p>
+                )}
               </div>
               <div className="mb-8 space-y-4">
                 <div className="flex items-start">
